@@ -5,7 +5,8 @@ import { NgForm } from '@angular/forms';
 import { Audio } from 'src/app/models/audio';
 /* import { ToastrService } from 'ngx-toastr'; */
 
-declare var M: any;
+/* declare var M: any; */
+const URL = 'http://localhost:3000/api/upload';
 
 @Component({
   selector: 'app-audio',
@@ -15,6 +16,7 @@ declare var M: any;
 export class AudioComponent implements OnInit {
 
   constructor(private audioService: AudioService/* , public toastr: ToastrService */) { }
+
 
   ngOnInit() {
     this.getAll();
