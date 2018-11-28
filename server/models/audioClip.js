@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Coordinates = require('./coordenates.model');
 
 const { Schema } = mongoose; // usar la clase eskema definido por mongoose
 
