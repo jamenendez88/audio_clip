@@ -1,21 +1,21 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
-import { MainTableDataSource } from './main-table-datasource';
+import { DataTableDataSource } from './data-table-datasource';
 
 @Component({
-  selector: 'main-table',
-  templateUrl: './main-table.component.html',
-  styleUrls: ['./main-table.component.css']
+  selector: 'data-table',
+  templateUrl: './data-table.component.html',
+  styleUrls: ['./data-table.component.css']
 })
-export class MainTableComponent implements OnInit {
+export class DataTableComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  dataSource: MainTableDataSource;
+  dataSource: DataTableDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'name'];
 
   ngOnInit() {
-    this.dataSource = new MainTableDataSource(this.paginator, this.sort);
+    this.dataSource = new DataTableDataSource(this.paginator, this.sort);
   }
 }

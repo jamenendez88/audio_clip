@@ -1,18 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatTableModule, MatPaginatorModule, MatSortModule} from '@angular/material';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { MainTableComponent } from './components/main-table/main-table.component';
+import { DataTableComponent } from './components/data-table/data-table.component';
+import { AudioComponent } from './components/audio/audio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
-    MainTableComponent
+    DataTableComponent,
+    AudioComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,9 @@ import { MainTableComponent } from './components/main-table/main-table.component
     MatListModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
