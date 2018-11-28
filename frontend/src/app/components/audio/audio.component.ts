@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AudioService } from '../../services/audio.service';
 import { NgForm } from '@angular/forms';
 import { Audio } from 'src/app/models/audio';
+/* import { ToastrService } from 'ngx-toastr'; */
 
 declare var M: any;
 
@@ -13,7 +14,7 @@ declare var M: any;
 })
 export class AudioComponent implements OnInit {
 
-  constructor(private audioService: AudioService) { }
+  constructor(private audioService: AudioService/* , public toastr: ToastrService */) { }
 
   ngOnInit() {
     this.getAll();
@@ -24,14 +25,16 @@ export class AudioComponent implements OnInit {
       this.audioService.put(form.value).subscribe(res => {
         this.getAll();
         this.reset(form);
-        M.toast({ html: "Successfuly updated" });
+       /*  this.toastr.success("Successfuly updated") */
+        /* M.toast({ html: "Successfuly updated" }); */
       });
     }
     else {
       this.audioService.post(form.value).subscribe(res => {
         this.getAll();
         this.reset(form);
-        M.toast({ html: "Successfuly saved" });
+       /*  this.toastr.success("Successfuly saved"); */
+       /*  M.toast({ html: "Successfuly saved" }); */
       });
     }
   }
@@ -40,7 +43,8 @@ export class AudioComponent implements OnInit {
     if (confirm("Are you sure you want to delete it")) {
       this.audioService.delete(_id).subscribe(res => {
         this.getAll();
-        M.toast({ html: "Successfuly deleted" });
+       /*  this.toastr.success("Successfuly deleted"); */
+       /*  M.toast({ html: "Successfuly deleted" }); */
       });
     }
   }

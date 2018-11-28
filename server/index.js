@@ -3,6 +3,7 @@ const fileUpload = require('express-fileupload'); // Middleware para cargar un f
 const morgan = require("morgan"); // modulo ke ayuda a ver por consola lo ke el usuario esta pidiendo
 const app = express(); // app es la encargada de mantener toda la funcionalidad del servidor ke estoy creando
 //const router = require("./routes/sound.routes");
+const cors = require("cors");
 
 const { mongoose } = require("./database"); // esta forma de declaracion plantea ke solo keremos usar de nuestro archivo database la conexion mongoose
 
@@ -11,6 +12,8 @@ app.set('port', process.env.PORT || 3000); // la funcion set me define una varia
 
 // MIDDLEWARES  -----  apartado de funciones necesarias para ke funcione mi servidor
 app.use(morgan("dev")); // me mostro por consola el error 404 de una peticion get porke no habia pagina web
+
+app.use(cors({ origin: 'http://localhost:4200' }));
 
 app.use(fileUpload({ createParentPath: true, safeFileNames: true, preserveExtension: true, abortOnLimit: true, limits: { fileSize: 50 * 1024 * 1024 } })); // Middleware para cargar un fichero al servidor. Explicacion de los paramteros en la pagina https://www.npmjs.com/package/express-fileupload
 

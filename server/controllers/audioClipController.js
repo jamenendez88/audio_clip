@@ -2,7 +2,7 @@ const audioClipModel = require("../models/audioClip"); // es el modelo ke me per
 const audioClipCtrl = {}; // creando mi objeto controlador de la clase empleado
 
 // Obtener Listado de audioClips por parametros
-audioClipCtrl.getaudioClips = async(req, res) => {
+audioClipCtrl.getaudioClips = async (req, res) => {
     try {
 
         var params = {}; // Objeto json que me guarda los campos con los valores para pasarlo a mi consulta
@@ -25,7 +25,7 @@ audioClipCtrl.getaudioClips = async(req, res) => {
 };
 
 // Obtener un audioClip Especifico
-audioClipCtrl.getaudioClipById = async(req, res) => {
+audioClipCtrl.getaudioClipById = async (req, res) => {
     try {
         const audioClipById = await audioClipModel.findById(req.params.id);
 
@@ -36,7 +36,7 @@ audioClipCtrl.getaudioClipById = async(req, res) => {
 }
 
 // Insertar un audioClip en mi base de datos
-audioClipCtrl.createaudioClip = async(req, res) => {
+audioClipCtrl.createaudioClip = async (req, res) => {
     try {
 
         // Hago uso del middleware ke me da el fichero cargado a traves de req.files
@@ -46,7 +46,15 @@ audioClipCtrl.createaudioClip = async(req, res) => {
         imageFile.mv('acceso-servidor-remoto/files/' + req.files.imageFile.name); */
 
 
-        const add_audioClip = new audioClipModel(req.body);
+        const add_audioClip = new audioClipModel({
+            bitrate: req.body.bitrate,
+            contentSize: req.body.contentSize,
+            encodingFormat: req.body.encodingFormat,
+            contentURI: req.body.contentURI,
+            uploadDate: req.body.uploadDate,
+            duration: req.body.duration,
+            label: req.body.label
+        });
 
         await add_audioClip.save();
 
@@ -57,7 +65,7 @@ audioClipCtrl.createaudioClip = async(req, res) => {
 }
 
 // Actualizar un audioClip
-audioClipCtrl.updateaudioClip = async(req, res) => {
+audioClipCtrl.updateaudioClip = async (req, res) => {
     try {
         const { id } = req.params;
         const { body } = req;
@@ -73,7 +81,7 @@ audioClipCtrl.updateaudioClip = async(req, res) => {
 }
 
 // Eliminar un audioClip
-audioClipCtrl.deleteaudioClip = async(req, res) => {
+audioClipCtrl.deleteaudioClip = async (req, res) => {
     try {
         const { id } = req.params
 
