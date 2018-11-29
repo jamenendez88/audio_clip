@@ -1,8 +1,8 @@
-<!-- <mat-toolbar>
+<mat-toolbar>
     <span>{{service.form.controls['_id'].value?"Modify Audioclip":"New Audioclip"}}</span>
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
-  </mat-toolbar> -->
+  </mat-toolbar>
 <!-- <form #audioForm = 'ngForm' [formGroup]="service.form" class="normal-form" (submit)="add(audioForm)"> -->
     <form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
     <mat-grid-list cols="2" rowHeight="300px">
