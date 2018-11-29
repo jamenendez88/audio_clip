@@ -4,10 +4,8 @@ import { AudioService } from '../../services/audio.service';
 import { NgForm } from '@angular/forms';
 import { Audio } from 'src/app/models/audio';
 import { NotificationService } from '../../services/notification.service';
-/* import { MatDialogRef } from '@angular/material'; */
-/* import { ToastrService } from 'ngx-toastr'; */
+import { MatDialogRef } from '@angular/material';
 
-/* declare var M: any; */
 const URL = 'http://localhost:3000/api/upload';
 
 @Component({
@@ -18,10 +16,8 @@ const URL = 'http://localhost:3000/api/upload';
 export class AudioComponent implements OnInit {
 
   constructor(private service: AudioService,
-    private notificationService: NotificationService
-    
-    /* ,
-    public dialogRef: MatDialogRef<AudioComponent> */) { }
+    private notificationService: NotificationService,
+    public dialogRef: MatDialogRef<AudioComponent>) { }
 
   ngOnInit() {
     this.getAll();
@@ -36,7 +32,7 @@ export class AudioComponent implements OnInit {
     /*  this.getAll(); */
     this.service.form.reset();
     this.service.initializeFormGroup();
-    /* this.dialogRef.close(); */
+    this.dialogRef.close();
   }
 
   onSubmit() {
@@ -47,12 +43,12 @@ export class AudioComponent implements OnInit {
           this.onClose();
         });
       }
-      /*  else {
+      else {
          this.service.put(this.service.form.value).subscribe(res => {
            this.onClose();
            this.notificationService.success(':: Submitted successfully');
          });
-       } */
+       } 
     }
   }
 
