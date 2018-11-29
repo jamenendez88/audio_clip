@@ -75,23 +75,12 @@ audioClipCtrl.updateaudioClip = (req, res) => {
         }
     }).catch((error) => {
         res.status(500).jsonp(error.message);
-    });
-    /* try {
-        const { id } = req.params;
-        const { body } = req;
-
-        const temp = await audioClipModel.findByIdAndUpdate(id, body);
-
-        if (temp) {
-            res.json({ status: "audioClip actualizado" });
-        }
-    } catch (error) {
-        res.json(error);
-    } */
+    });    
 }
 
 // Eliminar un audioClip
-audioClipCtrl.deleteaudioClip = async (req, res) => {
+audioClipCtrl.deleteaudioClip = (req, res) => {
+    const { id } = req.params;
     audioClipModel.findByIdAndDelete(id).then((audio) => {
          if (audio) {
              res.status(200).send({ message: 'Audioclip successfuly deleted!' });
@@ -100,18 +89,7 @@ audioClipCtrl.deleteaudioClip = async (req, res) => {
          }
      }).catch((error) => {
          res.status(500).jsonp(error.message);
-     }); */
-    try {
-        const { id } = req.params
-
-        const temp = await audioClipModel.findByIdAndDelete(id);
-
-        if (temp) {
-            res.json({ status: "audioClip Eliminado" });
-        }
-    } catch (error) {
-        res.json(error);
-    }
+     });   
 }
 
 // Exportar mi objeto controlador para ke se a usado en todo mi proyecto

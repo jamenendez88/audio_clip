@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from "./components/material/material.module";
 import { ReactiveFormsModule } from "@angular/forms";
-/* import { ToastrModule } from 'ngx-toastr'; */
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -40,8 +39,6 @@ import { AudioListComponent } from './components/audio-list/audio-list.component
     FormsModule,
     MaterialModule,
     ReactiveFormsModule
-    /* ,
-    ToastrModule */
   ],
   providers: [AudioService],
   bootstrap: [AppComponent],

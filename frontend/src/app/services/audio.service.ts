@@ -55,7 +55,7 @@ export class AudioService {
     return this.http.put(this.URL_API + `/${audio._id}`, audio);
   }
 
-  delete(_id: String) {    
+  delete(_id: String) {
     return this.http.delete(this.URL_API + `/${_id}`);
   }
 

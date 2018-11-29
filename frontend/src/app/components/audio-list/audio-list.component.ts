@@ -78,7 +78,7 @@ export class AudioListComponent implements OnInit {
     if (confirm('Are you sure to delete this record ?')) {
       this.service.delete(id);
       /* this.getAll(); */
-      this.notificationService.warn('! Deleted successfully');
+     /*  this.notificationService.warn('! Deleted successfully'); */
     }
   }
 
