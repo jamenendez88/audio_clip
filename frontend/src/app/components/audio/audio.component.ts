@@ -29,7 +29,7 @@ export class AudioComponent implements OnInit {
   }
 
   onClose() {
-    /*  this.getAll(); */
+    this.getAll();
     this.service.form.reset();
     this.service.initializeFormGroup();
     this.dialogRef.close();
