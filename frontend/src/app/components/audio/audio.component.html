@@ -1,90 +1,48 @@
-<div class="container">
-  <div class="row">
-    <div class="col s5">
-      <div class="card">
-        <div class="card-content">
-          <div class="example-container">
-
-            <input placeholder="Input">
-
-            <textarea placeholder="Textarea"></textarea>
-
-            <mat-select placeholder="Select">
-              <mat-option value="option">Option</mat-option>
-            </mat-select>
-          </div>
-          <!-- <form #audioForm="ngForm" (ngSubmit)="add(audioForm)">
-            <label style="font-family: 'Courier New', Courier, monospace; font-size: 2em" for="actorForm">Manage Audio
-              Clips</label>
-            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="audioService.selected._id">
-            <div class="row">
-              <div class="input-field col-s12">
-                <input type="number" name="bitrate" #bitrate="ngModel" [(ngModel)]="audioService.selected.bitrate"
-                  placeholder="Enter the bitrate">
-              </div>
-              <div class="input-field col-s12">
-                <input type="number" name="contentSize" #contentSize="ngModel" [(ngModel)]="audioService.selected.contentSize"
-                  placeholder="Enter the size of content">
-              </div>
-              <div class="input-field col-s12">
-                <input type="text" name="encodingFormat" #encodingFormat="ngModel" [(ngModel)]="audioService.selected.encodingFormat"
-                  placeholder="Enter the format">
-              </div>
-              <div class="input-field col-s12">
-                  <input type="text" name="contentURI" #contentURI="ngModel" [(ngModel)]="audioService.selected.contentURI"
-                    placeholder="Enter the uri">
-                </div>
-              <div class="input-field col-s12">
-                <input type="date" name="uploadDate" #uploadDate="ngModel" [(ngModel)]="audioService.selected.uploadDate"
-                  placeholder="Enter the upload date">
-              </div>
-              <div class="input-field col-s12">
-                <input type="number" name="duration" #duration="ngModel" [(ngModel)]="audioService.selected.duration"
-                  placeholder="Enter the duration">
-              </div>
-              <div class="input-field col-s12">
-                <input type="text" name="label" #label="ngModel" [(ngModel)]="audioService.selected.label" placeholder="Enter label">
-              </div>
-              <div class="card-action">
-                <div class="input-field col-s12">
-                  <button type="reset" class="btn right" style="margin-left: 2px;">Clean</button>
-                  <button type="submit" class="btn right">Save</button>
-                </div>
-              </div>
+<!-- <mat-toolbar>
+    <span>{{service.form.controls['_id'].value?"Modify Audioclip":"New Audioclip"}}</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+  </mat-toolbar> -->
+<!-- <form #audioForm = 'ngForm' [formGroup]="service.form" class="normal-form" (submit)="add(audioForm)"> -->
+    <form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+    <mat-grid-list cols="2" rowHeight="300px">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <input type="hidden" formControlName="_id">
+                <mat-form-field>
+                    <input formControlName="bitrate" matInput placeholder="Bitrate*">
+                    <mat-error>This field is mandatory.</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="contentSize" matInput placeholder="Content Size">
+                    <mat-error>Invalid content size.</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="contentURI" matInput placeholder="URL*">
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="encodingFormat" matInput placeholder="Format">
+                </mat-form-field>
             </div>
-          </form> -->
-        </div>
-      </div>
-    </div>
-    <div class="col s7">
-      <table class="striped highlight black-text">
-        <thead>
-          <th>Label</th>
-          <th>Bitrate</th>
-          <th>Size</th>
-          <th>Encoding</th>
-          <th>Date</th>
-          <th>Duration</th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let audio of audioService.audios">
-            <td>{{ audio.label }}</td>
-            <td>{{ audio.bitrate }}</td>
-            <td>{{ audio.contentSize }}</td>
-            <td>{{ audio.encodingFormat }}</td>
-            <td>{{ audio.uploadDate }}</td>
-            <td>{{ audio.duration }}</td>
-            <td>
-              <a (click)="edit(audio)">
-                <i class="material-icons">edit</i>
-              </a>
-              <a (click)="delete(audio._id, audioForm)">
-                <i class="material-icons">delete</i>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="controles-container">
+                <mat-form-field>
+                    <input formControlName="uploadDate" matInput [matDatepicker]="picker" placeholder="Upload Date*">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>               
+                <mat-form-field>
+                    <input formControlName="duration" matInput placeholder="Duration*">
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="label" matInput placeholder="Label*">
+                </mat-form-field>
+                <div class="button-row">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Submit</button>
+                    <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>

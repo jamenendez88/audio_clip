@@ -2,23 +2,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MaterialModule } from "./components/material/material.module";
+import { ReactiveFormsModule } from "@angular/forms";
 /* import { ToastrModule } from 'ngx-toastr'; */
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatTableModule, MatPaginatorModule, MatSortModule, MatSelectModule, MatOptionModule } from '@angular/material';
+import { MatButtonModule, MatToolbarModule, MatSidenavModule, MatIconModule, MatListModule, MatTableModule, MatPaginatorModule, MatSortModule } from '@angular/material';
 import { MainNavComponent } from './components/main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { AudioComponent } from './components/audio/audio.component';
+import { AudioService } from './services/audio.service';
+/* import { AudioListComponent } from './components/audio-list/audio-list.component'; */
 
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
     DataTableComponent,
-    AudioComponent
+    AudioComponent,
+    /* AudioListComponent */
   ],
   imports: [
     BrowserModule,
@@ -34,13 +38,13 @@ import { AudioComponent } from './components/audio/audio.component';
     MatSortModule,
     HttpClientModule,
     FormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatOptionModule
+    MaterialModule,
+    ReactiveFormsModule
     /* ,
     ToastrModule */
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [/* AudioService */],
+  bootstrap: [AppComponent],
+ /*  entryComponents:[AudioComponent] */
 })
 export class AppModule { }

@@ -39,13 +39,13 @@ audioClipCtrl.getaudioClipById = async (req, res) => {
 audioClipCtrl.createaudioClip = async (req, res) => {
     try {
 
-       /*  // Hago uso del middleware ke me da el fichero cargado a traves de req.files
-        let imageFile = req.files.imageFile;
-
-        // Uso el metodo .mv() para guardar el fichero en la carptea files, dentro de mi server
-        imageFile.mv('acceso-servidor-remoto/files/' + req.files.imageFile.name);
-
- */
+        /*  // Hago uso del middleware ke me da el fichero cargado a traves de req.files
+         let imageFile = req.files.imageFile;
+ 
+         // Uso el metodo .mv() para guardar el fichero en la carptea files, dentro de mi server
+         imageFile.mv('acceso-servidor-remoto/files/' + req.files.imageFile.name);
+ 
+  */
         const add_audioClip = new audioClipModel({
             bitrate: req.body.bitrate,
             contentSize: req.body.contentSize,
@@ -65,8 +65,18 @@ audioClipCtrl.createaudioClip = async (req, res) => {
 }
 
 // Actualizar un audioClip
-audioClipCtrl.updateaudioClip = async (req, res) => {
-    try {
+audioClipCtrl.updateaudioClip = (req, res) => {
+    const { id } = req.params;
+    audioClipModel.findByIdAndUpdate(id, { $set: req.body }, { new: true }).then((audio) => {
+        if (audio) {
+            res.status(200).send({ message: 'Audioclip successfuly updated!' });
+        } else {
+            res.status(404).jsonp("Not found");
+        }
+    }).catch((error) => {
+        res.status(500).jsonp(error.message);
+    });
+    /* try {
         const { id } = req.params;
         const { body } = req;
 
@@ -77,11 +87,23 @@ audioClipCtrl.updateaudioClip = async (req, res) => {
         }
     } catch (error) {
         res.json(error);
-    }
+    } */
 }
 
 // Eliminar un audioClip
 audioClipCtrl.deleteaudioClip = async (req, res) => {
+    /* const { id } = req.params; */
+    /* console.log(req.body); */
+    console.log(req.params);
+    /*  audioClipModel.findByIdAndDelete(id).then((audio) => {
+         if (audio) {
+             res.status(200).send({ message: 'Audioclip successfuly deleted!' });
+         } else {
+             res.status(404).jsonp("Not found");
+         }
+     }).catch((error) => {
+         res.status(500).jsonp(error.message);
+     }); */
     try {
         const { id } = req.params
 

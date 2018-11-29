@@ -1,6 +1,6 @@
 const mongoose = require("mongoose"); // modulo para conectarse a la base de datos
 
-const URI = 'mongodb+srv://jamenendez:Estudios-*2018@cluster0-7mf0l.mongodb.net/movie_catalog'; // direccion de la base de datos ke voy a crear como ejemplo
+const URI = 'mongodb+srv://jamenendez:Estudios-*2018@cluster0-7mf0l.mongodb.net/audio_clip'; // direccion de la base de datos ke voy a crear como ejemplo
 
 const option = {
     useNewUrlParser: true
