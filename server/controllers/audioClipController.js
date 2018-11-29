@@ -39,13 +39,13 @@ audioClipCtrl.getaudioClipById = async (req, res) => {
 audioClipCtrl.createaudioClip = async (req, res) => {
     try {
 
-        // Hago uso del middleware ke me da el fichero cargado a traves de req.files
+       /*  // Hago uso del middleware ke me da el fichero cargado a traves de req.files
         let imageFile = req.files.imageFile;
 
         // Uso el metodo .mv() para guardar el fichero en la carptea files, dentro de mi server
         imageFile.mv('acceso-servidor-remoto/files/' + req.files.imageFile.name);
 
-
+ */
         const add_audioClip = new audioClipModel({
             bitrate: req.body.bitrate,
             contentSize: req.body.contentSize,

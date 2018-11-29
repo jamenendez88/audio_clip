@@ -3,7 +3,17 @@
     <div class="col s5">
       <div class="card">
         <div class="card-content">
-          <form #audioForm="ngForm" (ngSubmit)="add(audioForm)">
+          <div class="example-container">
+
+            <input placeholder="Input">
+
+            <textarea placeholder="Textarea"></textarea>
+
+            <mat-select placeholder="Select">
+              <mat-option value="option">Option</mat-option>
+            </mat-select>
+          </div>
+          <!-- <form #audioForm="ngForm" (ngSubmit)="add(audioForm)">
             <label style="font-family: 'Courier New', Courier, monospace; font-size: 2em" for="actorForm">Manage Audio
               Clips</label>
             <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="audioService.selected._id">
@@ -42,7 +52,7 @@
                 </div>
               </div>
             </div>
-          </form>
+          </form> -->
         </div>
       </div>
     </div>
