@@ -14,7 +14,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { AudioComponent } from './components/audio/audio.component';
 import { AudioService } from './services/audio.service';
-/* import { AudioListComponent } from './components/audio-list/audio-list.component'; */
+import { AudioListComponent } from './components/audio-list/audio-list.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { AudioService } from './services/audio.service';
     MainNavComponent,
     DataTableComponent,
     AudioComponent,
-    /* AudioListComponent */
+    AudioListComponent
   ],
   imports: [
     BrowserModule,
@@ -43,8 +43,8 @@ import { AudioService } from './services/audio.service';
     /* ,
     ToastrModule */
   ],
-  providers: [/* AudioService */],
+  providers: [AudioService],
   bootstrap: [AppComponent],
- /*  entryComponents:[AudioComponent] */
+  entryComponents:[AudioComponent]
 })
 export class AppModule { }
