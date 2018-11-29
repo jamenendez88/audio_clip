@@ -92,10 +92,7 @@ audioClipCtrl.updateaudioClip = (req, res) => {
 
 // Eliminar un audioClip
 audioClipCtrl.deleteaudioClip = async (req, res) => {
-    /* const { id } = req.params; */
-    /* console.log(req.body); */
-    console.log(req.params);
-    /*  audioClipModel.findByIdAndDelete(id).then((audio) => {
+    audioClipModel.findByIdAndDelete(id).then((audio) => {
          if (audio) {
              res.status(200).send({ message: 'Audioclip successfuly deleted!' });
          } else {
