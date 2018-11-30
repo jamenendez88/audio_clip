@@ -1,10 +1,13 @@
 <mat-toolbar>
     <span>{{service.form.controls['_id'].value?"Modify Audioclip":"New Audioclip"}}</span>
     <span class="fill-remaining-space"></span>
-    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
-  </mat-toolbar>
+    <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
 <!-- <form #audioForm = 'ngForm' [formGroup]="service.form" class="normal-form" (submit)="add(audioForm)"> -->
-    <form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+    <input type="file" name="portada">
     <mat-grid-list cols="2" rowHeight="300px">
         <mat-grid-tile>
             <div class="controles-container">
@@ -31,7 +34,7 @@
                     <input formControlName="uploadDate" matInput [matDatepicker]="picker" placeholder="Upload Date*">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>               
+                </mat-form-field>
                 <mat-form-field>
                     <input formControlName="duration" matInput placeholder="Duration*">
                 </mat-form-field>

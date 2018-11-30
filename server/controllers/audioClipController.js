@@ -1,5 +1,35 @@
 const audioClipModel = require("../models/audioClip"); // es el modelo ke me permitara interactuar con mi objeto de base de datos
 const audioClipCtrl = {}; // creando mi objeto controlador de la clase empleado
+const path = require('path');
+var FileSaver = require('file-saver');
+
+/* const storage = multer.diskStorage({
+    destination: './uploads/media/',
+    filename: function (req, file, cb) {
+        cb(null, req.newname +
+            path.extname(file.originalname));
+    }
+});
+
+const upload = multer({
+    storage: storage,
+    limits: { fileSize: 100000000 },
+    fileFilter: function (req, file, cb) {
+        checkFileType(file, cb);
+    }
+}).single('portada');
+
+function checkFileType(file, cb) {
+    const filetypes = /mp3|wav|ogg/;
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = filetypes.test(file.mimetype);
+    if (mimetype && extname) {
+        return cb(null, true);
+    } else {
+        return cb('Error: Solo Audio');
+    }
+} */
+
 
 // Obtener Listado de audioClips por parametros
 audioClipCtrl.getaudioClips = async (req, res) => {
@@ -46,6 +76,8 @@ audioClipCtrl.createaudioClip = async (req, res) => {
          imageFile.mv('acceso-servidor-remoto/files/' + req.files.imageFile.name);
  
   */
+        req.upload(req, res, (err) => { });
+
         const add_audioClip = new audioClipModel({
             bitrate: req.body.bitrate,
             contentSize: req.body.contentSize,
@@ -59,6 +91,20 @@ audioClipCtrl.createaudioClip = async (req, res) => {
         await add_audioClip.save();
 
         res.json({ "status": "audioClip saved" });
+
+        console.log(req.file);
+        if (!req.file) {
+            console.log("No file received");
+            /*  return res.send({
+                 success: false
+             }); */
+
+        } else {
+            console.log('file received');
+            /*  return res.send({
+                 success: true
+             }) */
+        }
     } catch (error) {
         res.json(error);
     }
@@ -75,21 +121,21 @@ audioClipCtrl.updateaudioClip = (req, res) => {
         }
     }).catch((error) => {
         res.status(500).jsonp(error.message);
-    });    
+    });
 }
 
 // Eliminar un audioClip
 audioClipCtrl.deleteaudioClip = (req, res) => {
     const { id } = req.params;
     audioClipModel.findByIdAndDelete(id).then((audio) => {
-         if (audio) {
-             res.status(200).send({ message: 'Audioclip successfuly deleted!' });
-         } else {
-             res.status(404).jsonp("Not found");
-         }
-     }).catch((error) => {
-         res.status(500).jsonp(error.message);
-     });   
+        if (audio) {
+            res.status(200).send({ message: 'Audioclip successfuly deleted!' });
+        } else {
+            res.status(404).jsonp("Not found");
+        }
+    }).catch((error) => {
+        res.status(500).jsonp(error.message);
+    });
 }
 
 // Exportar mi objeto controlador para ke se a usado en todo mi proyecto
