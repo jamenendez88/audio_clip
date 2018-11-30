@@ -3,10 +3,24 @@
   <div class="container">
     <!-- <app-audio></app-audio> -->
     <app-audio-list></app-audio-list>
+
   </div>
-  <!-- <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+  <nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">ngProducts</a>
+  </nav>
+
+  <!-- <app-products></app-products> -->
+
+  <a (click)="initiateRecording()" class="btn btn-primary" *ngIf="!recording"> Start Recording </a>
+  <a (click)="stopRecording()" class="btn btn-danger" *ngIf="recording"> Stop Recording </a>
+  <div class="clearfix"></div>
+  <audio controls="" *ngIf="url">
+    <source [src]="sanitize(url)" type="audio/wav">
+  </audio>
+  
+  <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
 
   <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
     Upload audio
-  </button> -->
+  </button>
 </main-nav>
