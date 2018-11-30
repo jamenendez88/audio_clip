@@ -24,4 +24,5 @@ export class Audio {
     uploadDate: string;
     duration: number;
     label: string;
+    file: File;
 }

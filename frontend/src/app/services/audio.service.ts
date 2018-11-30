@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Audio } from '../models/audio';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import * as _ from 'lodash';
-import { DatePipe } from '@angular/common';
+/* import { DatePipe } from '@angular/common'; */
+
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,7 @@ export class AudioService {
     uploadDate: new FormControl('', Validators.required),
     duration: new FormControl('', Validators.required),
     label: new FormControl('', Validators.required),
+    file: new FormControl('')
   });
 
   initializeFormGroup() {
@@ -36,6 +38,7 @@ export class AudioService {
       uploadDate: '',
       duration: 0,
       label: 'angular fire database',
+      file: ''
     });
   }
 

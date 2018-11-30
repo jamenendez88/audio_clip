@@ -5,8 +5,8 @@ import { NgForm } from '@angular/forms';
 import { Audio } from 'src/app/models/audio';
 import { NotificationService } from '../../services/notification.service';
 import { MatDialogRef } from '@angular/material';
-
-const URL = 'http://localhost:3000/api/upload';
+import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
+const URL = 'http://localhost:3000/api/audioClips';
 
 @Component({
   selector: 'app-audio',
@@ -19,8 +19,15 @@ export class AudioComponent implements OnInit {
     private notificationService: NotificationService,
     public dialogRef: MatDialogRef<AudioComponent>) { }
 
+  public uploader: FileUploader = new FileUploader({ url: URL, itemAlias: 'audio' });
+
   ngOnInit() {
     this.getAll();
+    this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+      console.log('ImageUpload:uploaded:', item, status, response);
+      alert('File uploaded successfully');
+    };
   }
 
   onClear() {
@@ -44,11 +51,11 @@ export class AudioComponent implements OnInit {
         });
       }
       else {
-         this.service.put(this.service.form.value).subscribe(res => {
-           this.onClose();
-           this.notificationService.success(':: Submitted successfully');
-         });
-       } 
+        this.service.put(this.service.form.value).subscribe(res => {
+          this.onClose();
+          this.notificationService.success(':: Submitted successfully');
+        });
+      }
     }
   }
 
