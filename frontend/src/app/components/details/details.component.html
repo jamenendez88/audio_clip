@@ -1,5 +1,6 @@
-<h1>{{audio$.label}}</h1>
-<!-- bitrate: { type: Number, required: true },
+<div *ngIf='audio$'>
+  <h1>{{audio$.label}}</h1>
+  <!-- bitrate: { type: Number, required: true },
     contentSize: { type: Number },
     contentURI: { type: String, required: true },
     location: { X: { type: Number }, Y: { type: Number } },
@@ -7,11 +8,12 @@
     uploadDate: { type: Date, required: true },
     duration: { type: Number, required: true },
     label: { type: String, required: true } -->
-<ul>
-  <li><strong>Bitrate:</strong>  {{audio$.bitrate}}</li>
-  <li><strong>Content Size:</strong>  {{audio$.contentSize}}</li>
-  <!-- <li><strong>location</strong>{{audio.contentSize}}</li> -->
-  <li><strong>Format:</strong>  {{audio$.encodingFormat}}</li>
-  <li><strong>Uploaded:</strong>  {{audio$.uploadDate}}</li>
-  <li><strong>Duration:</strong>  {{audio$.duration}}</li>
-</ul>
+  <ul>
+    <li><strong>Bitrate:</strong> {{audio$.bitrate}}</li>
+    <li><strong>Content Size:</strong> {{audio$.contentSize}}</li>
+    <!-- <li><strong>location</strong>{{audio.contentSize}}</li> -->
+    <li><strong>Format:</strong> {{audio$.encodingFormat}}</li>
+    <li><strong>Uploaded:</strong> {{audio$.uploadDate}}</li>
+    <li><strong>Duration:</strong> {{audio$.duration}}</li>
+  </ul>
+</div>
