@@ -1,0 +1,11 @@
+<h1>Audios</h1>
+
+<ul>
+  <li *ngFor='let audio of audios$'>
+    <a routerLink="/details/{{audio._id}}">{{audio.label}}</a>
+
+    <ul>
+      <li>{{audio.bitrate}}</li>
+    </ul>
+  </li>
+</ul>
