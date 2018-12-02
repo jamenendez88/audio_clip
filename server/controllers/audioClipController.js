@@ -1,7 +1,9 @@
 const audioClipModel = require("../models/audioClip"); // es el modelo ke me permitara interactuar con mi objeto de base de datos
 const audioClipCtrl = {}; // creando mi objeto controlador de la clase empleado
 const path = require('path');
-var FileSaver = require('file-saver');
+const FileSaver = require('file-saver');
+const datetime = require('node-datetime');
+const dt = datetime.create();
 
 /* const storage = multer.diskStorage({
     destination: './uploads/media/',
@@ -67,36 +69,19 @@ audioClipCtrl.getaudioClipById = async (req, res) => {
 
 // Insertar un audioClip en mi base de datos
 audioClipCtrl.createaudioClip = async (req, res) => {
-    try {
+    try { 
         const add_audioClip = new audioClipModel({
             bitrate: req.body.bitrate,
-            contentSize: req.body.contentSize,
-            encodingFormat: req.body.encodingFormat,
-            contentURI: req.body.contentURI,
-            uploadDate: req.body.uploadDate,
-            duration: req.body.duration,
-            label: req.body.label
+            contentSize: req.file.size,
+            encodingFormat: req.file.encoding,
+            contentURI: req.file.path,
+            uploadDate: dt.format('m/d/Y H:M:S'),
+            // duration: req.body.duration,
+            label: req.body.label || "audio_note_" + Date.now()
         });
 
         await add_audioClip.save();
-
-        req.upload(req, res, (err) => { });
-
-        res.json({ "status": "audioClip saved" });
-
-        console.log(req.file);
-        if (!req.file) {
-            console.log("No file received");
-            /*  return res.send({
-                 success: false
-             }); */
-
-        } else {
-            console.log('file received');
-            /*  return res.send({
-                 success: true
-             }) */
-        }
+        res.json({ originalname: req.file.originalname, uploadname: req.file.filename });
     } catch (error) {
         res.json(error);
     }
@@ -105,7 +90,13 @@ audioClipCtrl.createaudioClip = async (req, res) => {
 // Actualizar un audioClip
 audioClipCtrl.updateaudioClip = (req, res) => {
     const { id } = req.params;
-    audioClipModel.findByIdAndUpdate(id, { $set: req.body }, { new: true }).then((audio) => {
+    audioClipModel.findByIdAndUpdate(id, {
+        $set: {
+            latitude: req.body.latitude,
+            longitude: req.body.longitude,
+            label: req.body.label
+        }
+    }, { new: true }).then((audio) => {
         if (audio) {
             res.status(200).send({ message: 'Audioclip successfuly updated!' });
         } else {

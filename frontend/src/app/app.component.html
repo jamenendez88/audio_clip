@@ -1,7 +1,19 @@
-<div id="container">
-  <app-sidebar></app-sidebar>
-
-  <div id="content">
+<div class="container">
+    <nav class="navbar navbar-default">
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="/dashboard"></a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li>
+          <a routerLink="/form" routerLinkActive="active">Audios</a>
+        </li>
+        <li>
+          <a routerLink="/audio" routerLinkActive="active">Record</a>
+        </li> 
+        <li>
+          <a routerLink="/table" routerLinkActive="active">Bitacore</a>
+        </li>       
+      </ul>      
+    </nav>
     <router-outlet></router-outlet>
   </div>
-</div>
