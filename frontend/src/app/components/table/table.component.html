@@ -1,57 +1,3 @@
-<!-- <mat-form-field>
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-</mat-form-field>
-
-<div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource" matSort>
-
-    <ng-container matColumnDef="label">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Label </th>
-      <td mat-cell *matCellDef="let row"> {{row.label}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="bitrate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Bitrate </th>
-      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="contentURI">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> URI </th>
-      <td mat-cell *matCellDef="let row"> {{row.contentURI}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="latitude">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Latitude </th>
-      <td mat-cell *matCellDef="let row"></td> {{row.latitude}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="longitude">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Longitude </th>
-      <td mat-cell *matCellDef="let row"> {{row.longitude}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="encodingFormat">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Format </th>
-      <td mat-cell *matCellDef="let row"> {{row.encodingFormat}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="uploadDate">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
-      <td mat-cell *matCellDef="let row"> {{row.uploadDate}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="duration">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Duration </th>
-      <td mat-cell *matCellDef="let row"> {{row.duration}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"> </tr>
-  </table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
-</div> -->
-
 <div class="search-div">
     <mat-form-field class="search-form-field" floatLabel="never">
       <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applyFilter()">
@@ -92,7 +38,7 @@
         </ng-container>
         <ng-container matColumnDef="duration">
           <mat-header-cell *matHeaderCellDef mat-sort-header>Duration</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.contentURI}}</mat-cell>
+          <mat-cell *matCellDef="let element">{{element.duration}}</mat-cell>
         </ng-container>
       <ng-container matColumnDef="actions">
         <mat-header-cell *matHeaderCellDef></mat-header-cell>
