@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AudioService } from 'src/app/services/audio.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { saveAs } from 'file-saver';
 
 @Component({
   selector: 'app-details',
@@ -22,6 +23,14 @@ export class DetailsComponent implements OnInit {
         this.audio$ = data
       }
     )
+  }
+
+  download(filename) {
+    this.data.downloadFile(filename.split("\\")[2])
+      .subscribe(
+        data => saveAs(data, filename),
+        error => console.error(error)
+      );
   }
 
 }

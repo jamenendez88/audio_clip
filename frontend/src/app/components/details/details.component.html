@@ -4,9 +4,10 @@
       <div class="card-content">       
         <ul>
           <li>
-            {{actor$.fullname}}
+            {{audio$.label}}
           </li>
         </ul>
+        <button (click)="download(audio$.contentURI)">attachment</button>
       </div>
     </div>
   </div>
